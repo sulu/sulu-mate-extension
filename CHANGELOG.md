@@ -4,8 +4,6 @@ CHANGELOG
 0.1.0
 -----
 
- * Add initial template structure for creating MatesOfMate extensions
- * Add example tool and resource implementations
- * Add quality tools configuration (PHPStan level 8, PHP CS Fixer, Rector)
- * Add CI/CD workflow templates
- * Add INSTRUCTIONS.md for AI agent guidance
+ * Initial release of the Sulu AI Mate extension
+ * Package scaffolding with quality tools (PHPStan level 8, PHP CS Fixer, Rector)
+ * CI/CD workflow

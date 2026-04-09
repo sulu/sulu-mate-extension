@@ -1,8 +1,8 @@
 blank_issues_enabled: true
 contact_links:
-  - name: 📖 Documentation
-    url: https://github.com/matesofmate/.github/blob/main/CONTRIBUTING.md
-    about: Read the contributing guide and extension documentation
-  - name: 💬 Community
-    url: https://github.com/matesofmate
-    about: Browse other MatesOfMate extensions and community resources
+  - name: Documentation
+    url: https://docs.sulu.io/
+    about: Read the Sulu documentation
+  - name: Community Support
+    url: https://sulu.io/services-and-support
+    about: Join the Sulu Slack community for questions and discussions

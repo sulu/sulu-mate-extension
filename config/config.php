@@ -1,16 +1,14 @@
 <?php
 
 /*
- * This file is part of the MatesOfMate Organisation.
+ * This file is part of Sulu.
  *
- * (c) Johannes Wachter <johannes@sulu.io>
+ * (c) Sulu GmbH
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
-use MatesOfMate\ExampleExtension\Capability\ExampleResource;
-use MatesOfMate\ExampleExtension\Capability\ExampleTool;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $container): void {
@@ -19,13 +17,5 @@ return static function (ContainerConfigurator $container): void {
         ->autowire()
         ->autoconfigure();
 
-    // Register your tools - automatically discovered by #[McpTool] attribute
-    $services->set(ExampleTool::class);
-
-    // Register your resources - automatically discovered by #[McpResource] attribute
-    $services->set(ExampleResource::class);
-
-    // Example with constructor dependencies:
-    // $services->set(YourTool::class)
-    //     ->arg('$someParameter', '%some.parameter%');
+    // Register your capabilities here
 };

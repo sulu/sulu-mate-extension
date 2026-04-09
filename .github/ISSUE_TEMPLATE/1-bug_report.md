@@ -29,9 +29,10 @@ What actually happened.
 ## Environment
 
 - PHP version: [e.g. 8.2.0]
-- Symfony version: [e.g. 6.4]
-- Extension version: [e.g. 1.0.0]
-- Symfony AI Mate version: [e.g. 0.1.0]
+- Symfony version: [e.g. 7.2]
+- Sulu version: [e.g. 2.6.0]
+- Extension version: [e.g. 0.1.0]
+- Symfony AI Mate version: [e.g. 0.6.0]
 
 ## Additional Context
 

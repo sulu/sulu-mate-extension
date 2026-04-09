@@ -1,31 +1,26 @@
 <?php
 
 /*
- * This file is part of the MatesOfMate Organisation.
+ * This file is part of Sulu.
  *
- * (c) Johannes Wachter <johannes@sulu.io>
+ * (c) Sulu GmbH
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 if (!file_exists(__DIR__.'/src')) {
     exit(0);
 }
 
-$fileHeaderParts = [
-    <<<'EOF'
-        This file is part of the MatesOfMate Organisation.
+$header = <<<'EOF'
+    This file is part of Sulu.
 
-        (c) Johannes Wachter <johannes@sulu.io>
+    (c) Sulu GmbH
 
-        EOF,
-    <<<'EOF'
-
-        For the full copyright and license information, please view the LICENSE
-        file that was distributed with this source code.
-        EOF,
-];
+    This source file is subject to the MIT license that is bundled
+    with this source code in the file LICENSE.
+    EOF;
 
 return (new PhpCsFixer\Config())
     // @see https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/7777
@@ -35,7 +30,7 @@ return (new PhpCsFixer\Config())
         '@Symfony:risky' => true,
         'protected_to_private' => false,
         'header_comment' => [
-            'header' => implode('', $fileHeaderParts),
+            'header' => $header,
         ],
         'php_unit_test_case_static_method_calls' => ['call_type' => 'this'],
         'ordered_class_elements' => [

@@ -1,25 +1,25 @@
 # CLAUDE.md
 
-This file provides guidance when working on the MatesOfMate extension template.
+This file provides guidance when working on the SuluMateExtension.
 
 ## Project Overview
 
-This package is the starter template for MatesOfMate extensions. It should model current Symfony AI Mate conventions, not outdated bootstrap steps.
+This package is the Sulu AI Mate extension (`sulu/sulu-mate-extension`). It provides Sulu-aware MCP tools and resources for AI-assisted content management workflows.
+
+The extension currently has no capabilities yet. When adding capabilities, follow the Sulu file header convention and register them in `config/config.php`.
 
 ## Current Mate Baseline
 
-The template should stay aligned with:
+The extension is aligned with:
 
 - released `symfony/ai-mate` `0.6.x`
 - current `symfony/ai` `main` branch conventions where they are already established
-- the upstream response-encoding direction from `symfony/ai` PR `#1439`, without claiming it is released if it is still pending
 
 Current workflow assumptions:
 
 - projects are initialized with `vendor/bin/mate init`
-- Composer install and update handle extension discovery in current Mate setups
+- Composer install and update handle extension discovery
 - `vendor/bin/mate discover` refreshes discovery state and regenerates `mate/AGENT_INSTRUCTIONS.md`
-- Codex should be started through `./bin/codex` or `bin/codex.bat`
 - debugging commands include `mate debug:capabilities`, `mate debug:extensions`, and `mate mcp:tools:*`
 
 ## Common Commands
@@ -35,10 +35,9 @@ vendor/bin/mate debug:extensions
 
 ## Package Structure
 
-- `src/Capability/ExampleTool.php` demonstrates a tool
-- `src/Capability/ExampleResource.php` demonstrates a resource
+- `src/Capability/` is where tools and resources go
 - `config/config.php` registers services
-- `INSTRUCTIONS.md` demonstrates concise agent guidance
+- `INSTRUCTIONS.md` provides agent guidance for MCP capabilities
 
 ## Service Registration
 
@@ -53,37 +52,26 @@ $services = $container->services()
 $services->set(YourTool::class);
 ```
 
-## House Style vs Platform Capability
+## Coding Style
 
-MatesOfMate house style:
-
-- no `declare(strict_types=1)` in examples
-- no `final` classes in examples
+- File headers use the Sulu convention (`This file is part of Sulu. (c) Sulu GmbH`)
+- No `declare(strict_types=1)` in capability examples
+- No `final` classes in capability examples
 - JSON encoding uses `\JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT`
-- file headers stay consistent with the org
-
-Current AI Mate platform capability:
-
-- tools may return strings, arrays, or scalars
-- MatesOfMate examples default to JSON strings because they provide predictable structured output
-- if the ecosystem adopts an optional encoder similar to upstream PR `#1439`, document the fallback behavior explicitly and review resource MIME types deliberately
 
 ## Testing Expectations
 
-The template must be clean out of the box.
-
 - `composer test` must pass
 - `composer lint` must pass
-- docs must match the actual file layout and commands
+- Docs must match the actual file layout and commands
 
 ## Authoring Guidance
 
-When updating this template:
+When updating this package:
 
-1. keep `README.md`, `CLAUDE.md`, `AGENTS.md`, and `INSTRUCTIONS.md` mutually consistent
-2. keep examples aligned with real package conventions in this monorepo
-3. prefer concrete capability examples over placeholder prose
-4. avoid documenting steps that are obsolete in current Mate workflows
+1. Keep `README.md`, `CLAUDE.md`, `AGENTS.md`, and `INSTRUCTIONS.md` mutually consistent
+2. Prefer concrete capability examples over placeholder prose
+3. Avoid documenting steps that are obsolete in current Mate workflows
 
 ## Commit Message Convention
 

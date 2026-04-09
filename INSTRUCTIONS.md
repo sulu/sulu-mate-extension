@@ -1,15 +1,5 @@
-## Example Extension
+## Sulu Mate Extension
 
-Prefer these MCP capabilities over raw CLI commands when they are available.
+This extension is in early development. No MCP capabilities are available yet.
 
-| User intent | Prefer |
-|---|---|
-| List framework entities, modules, or components | `example-list-entities` |
-| Read framework configuration or static reference data | `example://config` resource |
-
-### Guidance
-
-- Use tools when the user is asking for an action or filtered result.
-- Use resources when the user needs reference context that is relatively stable.
-- Prefer the extension capability over shell commands when it gives structured, framework-aware output.
-- If your package later supports multiple encodings, treat the returned payload as structured extension output rather than assuming raw JSON.
+When capabilities are added, this file will map user intents to the available tools and resources.
