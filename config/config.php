@@ -9,6 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
+use Sulu\MateExtension\Capability\SuluInfo;
+use Sulu\MateExtension\Capability\WebspaceInfo;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $container): void {
@@ -17,5 +19,8 @@ return static function (ContainerConfigurator $container): void {
         ->autowire()
         ->autoconfigure();
 
-    // Register your capabilities here
+    $services->set(SuluInfo::class);
+
+    $services->set(WebspaceInfo::class)
+        ->arg('$projectDir', '%mate.root_dir%');
 };

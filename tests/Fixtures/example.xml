@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webspace xmlns="http://schemas.sulu.io/webspace/webspace"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://schemas.sulu.io/webspace/webspace http://schemas.sulu.io/webspace/webspace-1.1.xsd">
+    <name>Example</name>
+    <key>example</key>
+
+    <localizations>
+        <localization language="en" default="true">
+            <localization language="en" country="us"/>
+        </localization>
+        <localization language="de"/>
+    </localizations>
+
+    <theme>example</theme>
+
+    <default-templates>
+        <default-template type="page">default</default-template>
+        <default-template type="homepage">homepage</default-template>
+    </default-templates>
+
+    <templates>
+        <template type="error">error/error</template>
+        <template type="error-404">error/error-404</template>
+    </templates>
+
+    <navigation>
+        <contexts>
+            <context key="main">
+                <meta>
+                    <title lang="en">Main Navigation</title>
+                    <title lang="de">Hauptnavigation</title>
+                </meta>
+            </context>
+        </contexts>
+    </navigation>
+
+    <resource-locator>
+        <strategy>tree_leaf_edit</strategy>
+    </resource-locator>
+
+    <portals>
+        <portal>
+            <name>Example Portal</name>
+            <key>example</key>
+            <localizations>
+                <localization language="en" default="true"/>
+                <localization language="de"/>
+            </localizations>
+            <environments>
+                <environment type="prod">
+                    <urls>
+                        <url language="en">example.com</url>
+                        <url language="de">example.com/de</url>
+                    </urls>
+                </environment>
+            </environments>
+        </portal>
+    </portals>
+</webspace>
