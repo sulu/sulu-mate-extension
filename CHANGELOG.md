@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+0.2.0
+-----
+
+ * Add `sulu-templates` tool for page and article template definitions
+ * Add `sulu-info` tool for installed Sulu package versions
+ * Add `sulu-webspaces` tool for webspace configuration
+
 0.1.0
 -----
 

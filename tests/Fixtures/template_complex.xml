@@ -1,0 +1,111 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+
+    <key>complex</key>
+    <view>pages/complex</view>
+
+    <meta>
+        <title lang="en">Complex</title>
+    </meta>
+
+    <properties>
+        <property name="title" type="text_line" mandatory="true">
+            <meta>
+                <title lang="en">Title</title>
+            </meta>
+        </property>
+
+        <property name="image_map" type="image_map" default-type="basic">
+            <meta>
+                <title lang="en">Image Map</title>
+            </meta>
+
+            <types>
+                <type name="basic">
+                    <meta>
+                        <title lang="en">Basic</title>
+                    </meta>
+
+                    <properties>
+                        <property name="hotspot_title" type="text_line">
+                            <meta>
+                                <title lang="en">Title</title>
+                            </meta>
+                        </property>
+                    </properties>
+                </type>
+                <type name="advanced">
+                    <meta>
+                        <title lang="en">Advanced</title>
+                    </meta>
+
+                    <properties>
+                        <property name="hotspot_text" type="text_editor">
+                            <meta>
+                                <title lang="en">Text</title>
+                            </meta>
+                        </property>
+                        <property name="hotspot_media" type="media_selection">
+                            <meta>
+                                <title lang="en">Media</title>
+                            </meta>
+                        </property>
+                    </properties>
+                </type>
+            </types>
+        </property>
+
+        <block name="blocks" default-type="text" minOccurs="0">
+            <meta>
+                <title lang="en">Blocks</title>
+            </meta>
+
+            <types>
+                <type name="text">
+                    <meta>
+                        <title lang="en">Text</title>
+                    </meta>
+
+                    <properties>
+                        <property name="text" type="text_editor">
+                            <meta>
+                                <title lang="en">Text</title>
+                            </meta>
+                        </property>
+                    </properties>
+                </type>
+                <type name="nested">
+                    <meta>
+                        <title lang="en">Nested</title>
+                    </meta>
+
+                    <properties>
+                        <block name="inner_blocks" default-type="inner_text" minOccurs="0">
+                            <meta>
+                                <title lang="en">Inner Blocks</title>
+                            </meta>
+
+                            <types>
+                                <type name="inner_text">
+                                    <meta>
+                                        <title lang="en">Inner Text</title>
+                                    </meta>
+
+                                    <properties>
+                                        <property name="inner_content" type="text_editor">
+                                            <meta>
+                                                <title lang="en">Content</title>
+                                            </meta>
+                                        </property>
+                                    </properties>
+                                </type>
+                            </types>
+                        </block>
+                    </properties>
+                </type>
+            </types>
+        </block>
+    </properties>
+</template>
