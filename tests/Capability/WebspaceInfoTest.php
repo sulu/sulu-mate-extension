@@ -54,6 +54,7 @@ class WebspaceInfoTest extends TestCase
             $this->assertSame([
                 'page' => 'default',
                 'homepage' => 'homepage',
+                'home' => 'homepage',
             ], $webspace['default_templates']);
 
             $this->assertCount(1, $webspace['portals']);

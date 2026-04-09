@@ -17,16 +17,23 @@ use Mcp\Capability\Attribute\McpTool;
 class SuluInfo
 {
     /**
-     * @return array<string, string|null>
+     * @return array<string, string>
      */
     #[McpTool('sulu-info', 'Get version information about all installed Sulu packages')]
     public function info(): array
     {
         $packages = [];
         foreach (InstalledVersions::getInstalledPackages() as $package) {
-            if (str_starts_with($package, 'sulu/')) {
-                $packages[$package] = InstalledVersions::getPrettyVersion($package);
+            if (!str_starts_with($package, 'sulu/')) {
+                continue;
             }
+
+            $version = InstalledVersions::getPrettyVersion($package);
+            if (null === $version) {
+                continue;
+            }
+
+            $packages[$package] = $version;
         }
 
         ksort($packages);

@@ -12,6 +12,12 @@
 namespace Sulu\MateExtension\Capability;
 
 use Mcp\Capability\Attribute\McpTool;
+use Sulu\Component\Localization\Localization;
+use Sulu\Component\Webspace\Loader\XmlFileLoader10;
+use Sulu\Component\Webspace\Loader\XmlFileLoader11;
+use Sulu\Component\Webspace\Portal;
+use Sulu\Component\Webspace\Webspace;
+use Symfony\Component\Config\FileLocator;
 
 class WebspaceInfo
 {
@@ -21,7 +27,17 @@ class WebspaceInfo
     }
 
     /**
-     * @return list<array{key: string, name: string, localizations: list<string>, default_templates: array<string, string>, portals: list<array{name: string, key: string, localizations: list<string>}>}>
+     * @return list<array{
+     *     key: string,
+     *     name: string,
+     *     localizations: list<string>,
+     *     default_templates: array<string, string>,
+     *     portals: list<array{
+     *         name: string,
+     *         key: string,
+     *         localizations: list<string>
+     *     }>
+     * }>
      */
     #[McpTool('sulu-webspaces', 'Get the webspace configuration of the Sulu installation')]
     public function webspaces(): array
@@ -49,98 +65,93 @@ class WebspaceInfo
     }
 
     /**
-     * @return array{key: string, name: string, localizations: list<string>, default_templates: array<string, string>, portals: list<array{name: string, key: string, localizations: list<string>}>}|null
+     * @return array{
+     *     key: string,
+     *     name: string,
+     *     localizations: list<string>,
+     *     default_templates: array<string, string>,
+     *     portals: list<array{
+     *         name: string,
+     *         key: string,
+     *         localizations: list<string>
+     *     }>
+     * }|null
      */
     private function loadWebspace(string $file): ?array
     {
-        $content = file_get_contents($file);
-        if (false === $content) {
-            return null;
-        }
-
-        // Strip XML namespace declarations to simplify SimpleXML element access
-        $content = preg_replace('/\sxmlns(?::[a-z]+)?="[^"]*"/i', '', $content);
-
-        $xml = @simplexml_load_string((string) $content);
-        if (false === $xml) {
+        $webspace = $this->loadWebspaceDefinition($file);
+        if (!$webspace instanceof Webspace) {
             return null;
         }
 
         return [
-            'key' => (string) $xml->key,
-            'name' => (string) $xml->name,
-            'localizations' => $this->parseLocalizations($xml->localizations),
-            'default_templates' => $this->parseDefaultTemplates($xml->{'default-templates'}),
-            'portals' => $this->parsePortals($xml->portals),
+            'key' => $webspace->getKey(),
+            'name' => $webspace->getName(),
+            'localizations' => $this->formatLocalizations($webspace->getAllLocalizations()),
+            'default_templates' => $webspace->getDefaultTemplates(),
+            'portals' => $this->parsePortals($webspace->getPortals()),
         ];
     }
 
-    /**
-     * @return list<string>
-     */
-    private function parseLocalizations(?\SimpleXMLElement $localizations): array
+    private function loadWebspaceDefinition(string $file): ?Webspace
     {
-        if (!$localizations instanceof \SimpleXMLElement) {
-            return [];
-        }
+        $locator = new FileLocator();
+        $loaders = [
+            new XmlFileLoader11($locator),
+            new XmlFileLoader10($locator),
+        ];
 
-        $result = [];
-        foreach ($localizations->localization ?? [] as $localization) {
-            $result[] = $this->buildLocale($localization);
+        foreach ($loaders as $loader) {
+            try {
+                if (!$loader->supports($file)) {
+                    continue;
+                }
 
-            // Handle nested localizations (Sulu uses nesting for fallback chains)
-            foreach ($localization->localization ?? [] as $child) {
-                $result[] = $this->buildLocale($child);
+                return $loader->load($file);
+            } catch (\Throwable) {
+                continue;
             }
         }
 
-        return $result;
-    }
-
-    private function buildLocale(\SimpleXMLElement $localization): string
-    {
-        $locale = (string) $localization['language'];
-        $country = (string) $localization['country'];
-
-        if ('' !== $country) {
-            $locale .= '_'.$country;
-        }
-
-        return $locale;
+        return null;
     }
 
     /**
-     * @return array<string, string>
+     * @param iterable<Localization> $localizations
+     *
+     * @return list<string>
      */
-    private function parseDefaultTemplates(?\SimpleXMLElement $templates): array
+    private function formatLocalizations(iterable $localizations): array
     {
-        if (!$templates instanceof \SimpleXMLElement) {
-            return [];
-        }
-
         $result = [];
-        foreach ($templates->{'default-template'} ?? [] as $template) {
-            $result[(string) $template['type']] = (string) $template;
+        foreach ($localizations as $localization) {
+            $result[] = $localization->getLocale();
         }
 
         return $result;
     }
 
     /**
-     * @return list<array{name: string, key: string, localizations: list<string>}>
+     * @param iterable<Portal> $portals
+     *
+     * @return list<array{
+     *     name: string,
+     *     key: string,
+     *     localizations: list<string>
+     * }>
      */
-    private function parsePortals(?\SimpleXMLElement $portals): array
+    private function parsePortals(iterable $portals): array
     {
-        if (!$portals instanceof \SimpleXMLElement) {
-            return [];
-        }
-
         $result = [];
-        foreach ($portals->portal ?? [] as $portal) {
+        foreach ($portals as $portal) {
+            if (!$portal instanceof Portal) {
+                continue;
+            }
+
             $result[] = [
-                'name' => (string) $portal->name,
-                'key' => (string) $portal->key,
-                'localizations' => $this->parseLocalizations($portal->localizations),
+                'name' => $portal->getName(),
+                'key' => $portal->getKey(),
+                'localizations' => $this->formatLocalizations($portal->getLocalizations()),
             ];
         }
 
