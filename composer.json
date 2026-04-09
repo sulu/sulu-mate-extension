@@ -18,6 +18,7 @@
     "require": {
         "php": ">=8.2",
         "ext-simplexml": "*",
+        "sulu/sulu": "^2.6 || ^3.0",
         "symfony/ai-mate": "^0.6"
     },
     "require-dev": {

@@ -1,5 +1,9 @@
 ## Sulu Mate Extension
 
-This extension is in early development. No MCP capabilities are available yet.
+This extension provides Sulu-specific MCP tools for AI-assisted content management.
 
-When capabilities are added, this file will map user intents to the available tools and resources.
+### Available Tools
+
+**`sulu-info`** — Returns version information for all installed `sulu/*` packages. Use this to understand which Sulu components are available in the project and at what versions.
+
+**`sulu-webspaces`** — Returns the webspace configuration of the Sulu installation. Each webspace includes its key, name, localizations, default templates, and portal definitions. Use this to understand the content structure, available languages, and URL routing of the project.
