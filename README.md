@@ -47,6 +47,11 @@ Extension discovery is handled automatically after Composer install and update. 
 want to refresh discovery state and regenerate agent instruction artifacts manually.
 
 
+## 🔧&nbsp; Available Tools
+
+See [INSTRUCTIONS.md](INSTRUCTIONS.md) for a full description of the available MCP tools.
+
+
 ## 💡&nbsp; Key Concepts
 
 ### AI Mate Extension

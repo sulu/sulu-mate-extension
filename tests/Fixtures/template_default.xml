@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+
+    <key>default</key>
+    <view>pages/default</view>
+    <controller>Sulu\Bundle\WebsiteBundle\Controller\DefaultController::indexAction</controller>
+    <cacheLifetime>604800</cacheLifetime>
+
+    <meta>
+        <title lang="en">Default</title>
+        <title lang="de">Standard</title>
+    </meta>
+
+    <properties>
+        <property name="title" type="text_line" mandatory="true">
+            <meta>
+                <title lang="en">Title</title>
+                <title lang="de">Titel</title>
+            </meta>
+
+            <tag name="sulu.rlp.part"/>
+        </property>
+
+        <property name="url" type="resource_locator" mandatory="true" multilingual="false">
+            <meta>
+                <title lang="en">URL</title>
+            </meta>
+        </property>
+
+        <section name="content">
+            <meta>
+                <title lang="en">Content</title>
+            </meta>
+
+            <properties>
+                <property name="article" type="text_editor">
+                    <meta>
+                        <title lang="en">Article</title>
+                    </meta>
+                </property>
+
+                <block name="blocks" default-type="editor" minOccurs="0" maxOccurs="10">
+                    <meta>
+                        <title lang="en">Content Blocks</title>
+                    </meta>
+
+                    <types>
+                        <type name="editor">
+                            <meta>
+                                <title lang="en">Editor</title>
+                            </meta>
+
+                            <properties>
+                                <property name="text" type="text_editor">
+                                    <meta>
+                                        <title lang="en">Text</title>
+                                    </meta>
+                                </property>
+                            </properties>
+                        </type>
+                        <type name="image">
+                            <meta>
+                                <title lang="en">Image</title>
+                            </meta>
+
+                            <properties>
+                                <property name="media" type="media_selection" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Media</title>
+                                    </meta>
+                                </property>
+                                <property name="caption" type="text_line">
+                                    <meta>
+                                        <title lang="en">Caption</title>
+                                    </meta>
+                                </property>
+                            </properties>
+                        </type>
+                    </types>
+                </block>
+            </properties>
+        </section>
+    </properties>
+</template>
