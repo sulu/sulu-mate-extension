@@ -52,6 +52,18 @@ want to refresh discovery state and regenerate agent instruction artifacts manua
 See [INSTRUCTIONS.md](INSTRUCTIONS.md) for a full description of the available tools.
 
 
+## 🧠&nbsp; Agent Skills
+
+The extension ships [Agent Skills](https://agentskills.io/) in [skills](skills). `mate discover` installs them into
+`.agents/skills/` and `.claude/skills/` of your project:
+
+- `sulu-dev`: entry point for Sulu work. Tells the agent to call `sulu-info`, `sulu-webspaces` and `sulu-templates`
+  before it generates code.
+- `authoring-sulu-templates`: workflow to create or change a page or article template: look up, mirror, verify.
+
+Run `vendor/bin/mate skills:list` to see their state.
+
+
 ## 💡&nbsp; Key Concepts
 
 ### AI Mate Extension

@@ -4,6 +4,7 @@ CHANGELOG
 0.4.0
 -----
 
+ * Add the Agent Skills `sulu-dev` and `authoring-sulu-templates` in `skills/` and declare them in `extra.ai-mate.skills`
  * Require `symfony/ai-mate` `^0.13 || ^0.14 || ^0.15 || ^1.0.0-BETA1` and drop `^0.11` and `^0.12`
  * Replace the `mcp/sdk` `#[McpTool]` attribute with the native `#[MateTool]` attribute, because Mate no longer runs an MCP server
  * Fix the empty tool descriptions in `tools:list`
