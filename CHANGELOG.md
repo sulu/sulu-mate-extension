@@ -6,14 +6,15 @@ CHANGELOG
 
  * Add `sulu-twig-list` and `sulu-twig-verify` tools for the Twig functions, filters and tests of the installed Sulu packages
  * Read these tools from the installed `sulu/*` sources, without booting the host kernel
-
-0.3.0
------
-
  * Require `symfony/ai-mate` `^0.13 || ^0.14 || ^0.15 || ^1.0.0-BETA1` and drop `^0.11` and `^0.12`
  * Replace the `mcp/sdk` `#[McpTool]` attribute with the native `#[MateTool]` attribute, because Mate no longer runs an MCP server
  * Fix the empty tool descriptions in `tools:list`
  * Raise the dev tool floors to `rector/rector` `^2.7` and `friendsofphp/php-cs-fixer` `^3.57`
+
+0.3.0
+-----
+
+ * Require `symfony/ai-mate` `^0.11 || ^0.12`
 
 0.2.0
 -----
