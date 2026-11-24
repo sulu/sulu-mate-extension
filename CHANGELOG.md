@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.4.0
+-----
+
+ * Add the Agent Skills `sulu-dev` and `sulu-templates` in `skills/` and declare them in `extra.ai-mate.skills`
+
 0.3.0
 -----
 

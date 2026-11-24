@@ -37,6 +37,7 @@ vendor/bin/mate debug:extensions
 
 - `src/Capability/` is where tools and resources go
 - `config/config.php` registers services
+- `skills/<name>/SKILL.md` holds the Agent Skills, declared in `extra.ai-mate.skills`; the `name` in the frontmatter must match the directory
 - `INSTRUCTIONS.md` provides agent guidance for the capabilities
 
 ## Service Registration
