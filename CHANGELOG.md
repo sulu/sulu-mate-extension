@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+0.4.0
+-----
+
+ * Add `sulu-twig-list` and `sulu-twig-verify` tools for the Twig functions, filters and tests of the installed Sulu packages
+ * Read these tools from the installed `sulu/*` sources, without booting the host kernel
+
 0.3.0
 -----
 
