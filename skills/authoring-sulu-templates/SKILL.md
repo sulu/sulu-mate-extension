@@ -74,6 +74,7 @@ A block looks like this:
 
 The `<view>` value maps to `templates/<view>.html.twig`. A new template needs that file.
 Copy the Twig file of the source template and render the new properties from it.
+Check every `sulu_*` Twig helper you add with `<mate> tools:call sulu-twig-verify --name=<name>`.
 `sulu-templates` lists the Twig files it found in `twig_templates`. It only looks in the
 project's `templates/` directory. An empty list means the view was not found there. Check
 custom Twig paths and bundle notation before you create a second file.
