@@ -54,6 +54,7 @@ want to refresh discovery state and regenerate agent instruction artifacts manua
 - `sulu-info`: installed `sulu/*` package versions
 - `sulu-webspaces`: webspaces with localizations, default templates and portals
 - `sulu-templates`: page and article templates with properties and block types
+- `sulu-property-types` and `sulu-content-types`: the `type` values usable in template properties and the content types or resolvers behind them
 - `sulu-twig-list` and `sulu-twig-verify`: the `sulu_*` Twig functions, filters and tests, and a check for one exact name
 
 Agents call a tool with `vendor/bin/mate tools:call <tool>`. See [INSTRUCTIONS.md](INSTRUCTIONS.md) for when to call

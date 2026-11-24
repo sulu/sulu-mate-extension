@@ -22,6 +22,8 @@ instructions, usually `vendor/bin/mate`. Add `--format=json` for output you want
 | Installed `sulu/*` versions | `<mate> tools:call sulu-info` |
 | Webspaces, localizations, default templates, portals | `<mate> tools:call sulu-webspaces` |
 | Page and article templates with properties and block types | `<mate> tools:call sulu-templates` |
+| Valid property `type` values, with how often the project uses them | `<mate> tools:call sulu-property-types` |
+| Content type or resolver behind a property type | `<mate> tools:call sulu-content-types --name_prefix=<type>` |
 | Does a `sulu_*` Twig function, filter or test exist | `<mate> tools:call sulu-twig-verify --name=<name>` |
 | Which `sulu_*` Twig helpers exist | `<mate> tools:call sulu-twig-list --name_prefix=sulu_` |
 
@@ -52,10 +54,9 @@ What the tools do not tell you:
 
 ## Hard rules
 
-- Never invent a property type. Use types that appear in `sulu-templates` output or in the
-  project's own XML. A standard project uses few of them. If you need another one, for
-  example for media or a selection, look it up in the Sulu documentation of the installed
-  major version and check that it is registered. If you cannot confirm it, ask.
+- Never invent a property type. Use types from `sulu-property-types` or from the project's
+  own XML. A standard project uses few of them, so call `sulu-property-types` when you need
+  another one, for example for media or a selection. If the tool does not list it, ask.
 - Never invent a Twig helper. Check every `sulu_*` function, filter or test with
   `sulu-twig-verify` before you use it. The tool scans the installed `sulu/*` packages only.
 - Never invent the key of an existing template. Take keys of existing templates from

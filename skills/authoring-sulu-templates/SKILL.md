@@ -31,9 +31,9 @@ Copy the closest template and edit the copy.
 - Keep the tags and params the source uses on its core properties (for example the
   title and url properties of a page). The tool output does not show them, so read the XML.
   A page that loses them loses its URL handling.
-- Use property types you saw in `sulu-templates` output or in project XML. If the project
-  has no example of the type you need, look it up in the Sulu documentation of the installed
-  major version. If you still cannot find it, ask. Do not guess.
+- Use property types from `<mate> tools:call sulu-property-types` or from project XML.
+  Use `sulu-content-types` to see which content type or resolver stands behind one. If the
+  tools do not list the type you need, ask. Do not guess.
 - Give the template and every property a `<meta><title lang="..."/></meta>` with the same
   `lang` set as the source template. Admin titles follow the UI locale of the admin user
   (`sulu_core.locales`), not the locales of the webspace.

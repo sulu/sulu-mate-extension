@@ -4,6 +4,8 @@ CHANGELOG
 0.5.0
 -----
 
+ * Add `sulu-content-types` tool for the registered content types (Sulu 3 property resolvers, Sulu 2.6 content types)
+ * Add `sulu-property-types` tool for the type names usable in template XML properties
  * Add `sulu-twig-list` and `sulu-twig-verify` tools for the Twig functions, filters and tests of the installed Sulu packages
  * Read these tools from the installed `sulu/*` sources, without booting the host kernel
 
