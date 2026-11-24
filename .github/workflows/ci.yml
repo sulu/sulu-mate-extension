@@ -21,6 +21,9 @@ jobs:
                   extensions: json, simplexml
                   coverage: none
 
+            - name: Validate composer.json
+              run: composer validate --strict
+
             - name: Install dependencies
               run: composer install --prefer-dist --no-progress --no-interaction
 
@@ -28,12 +31,33 @@ jobs:
               run: composer lint
 
     test:
-        name: Test
+        name: Test (${{ matrix.name }})
         runs-on: ubuntu-latest
 
         strategy:
+            fail-fast: false
             matrix:
-                php-version: ['8.2', '8.3', '8.4']
+                include:
+                    - name: PHP 8.2, lowest
+                      php-version: '8.2'
+                      update-flags: '--prefer-lowest --prefer-stable'
+                    - name: PHP 8.3, highest
+                      php-version: '8.3'
+                    - name: PHP 8.5, highest
+                      php-version: '8.5'
+                    - name: ai-mate 0.13
+                      php-version: '8.4'
+                      require: 'symfony/ai-mate:0.13.*'
+                    - name: ai-mate 1.0.0-BETA1
+                      php-version: '8.4'
+                      stability: beta
+                      require: 'symfony/ai-mate:^1.0.0-BETA1'
+                    - name: Sulu 2.6
+                      php-version: '8.3'
+                      require: 'sulu/sulu:2.6.* jackalope/jackalope-doctrine-dbal'
+                    - name: Sulu 3
+                      php-version: '8.4'
+                      require: 'sulu/sulu:^3.0'
 
         steps:
             - name: Checkout code
@@ -46,8 +70,22 @@ jobs:
                   extensions: json, simplexml
                   coverage: none
 
+            - name: Validate composer.json
+              run: composer validate --strict
+
+            - name: Set minimum stability
+              if: matrix.stability
+              run: composer config minimum-stability ${{ matrix.stability }}
+
+            - name: Pin dependencies
+              if: matrix.require
+              run: composer require --no-update ${{ matrix.require }}
+
             - name: Install dependencies
-              run: composer install --prefer-dist --no-progress --no-interaction
+              run: composer update --prefer-dist --no-progress --no-interaction ${{ matrix.update-flags }}
+
+            - name: Run linters
+              run: composer lint
 
             - name: Run tests
               run: composer test
