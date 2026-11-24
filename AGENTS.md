@@ -36,6 +36,13 @@ When creating resources:
 - Return `uri`, `mimeType`, and `text`
 - Register the class in `config/config.php`
 
+## Skills
+
+- Skills live in `skills/<name>/SKILL.md` and are declared in `extra.ai-mate.skills` in `composer.json`
+- The frontmatter `name` matches the directory. The `description` says when to apply the skill
+- Only describe tools that exist in `src/Capability/`
+- Check with `vendor/bin/mate skills:validate --strict` in a project that requires the extension
+
 ## Mate Workflow
 
 - `vendor/bin/mate init` prepares project-local Mate files

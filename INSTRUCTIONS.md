@@ -1,19 +1,26 @@
 ## Sulu Mate Extension
 
-This extension provides Sulu-specific tools for AI-assisted content management.
+Read-only tools. They take no parameters, except the optional filters below.
 
-### Available Tools
+### Tool index
 
-**`sulu-info`** — Returns version information for all installed `sulu/*` packages. Use this to understand which Sulu components are available in the project and at what versions.
+| Tool | Use when |
+|---|---|
+| `sulu-info` | You need the Sulu version, to tell Sulu 2.6 from 3.x. |
+| `sulu-webspaces` | You need webspace keys, locales or default templates. |
+| `sulu-templates` | You write, change or fill a page or article template. |
+| `sulu-property-types` | You pick the `type` of a template property. Filter with `name_prefix` and `limit`. |
+| `sulu-content-types` | You need the content type or resolver behind a property type. Filter with `name_prefix` and `limit`. |
+| `sulu-twig-list` | You look for a `sulu_*` Twig function, filter or test. Filter with `kind`, `name_prefix` and `limit`. |
+| `sulu-twig-verify` | You are about to use a `sulu_*` Twig function, filter or test in a template. |
 
-**`sulu-webspaces`** — Returns the webspace configuration of the Sulu installation. Each webspace includes its key, name, localizations, default templates, and portal definitions. Use this to understand the content structure, available languages, and URL routing of the project.
+### Hard rules
 
-**`sulu-templates`** — Returns the page and article template definitions of the Sulu installation. Each template includes its key, type (page or article), view, localized titles, and a structured list of properties with their types. Block properties include their available block types and sub-properties. Use this to understand the content structure expected by each template when creating or editing pages and articles.
-
-**`sulu-content-types`**: Lists the content types registered in Sulu with their service id and class. Sulu 3 lists the property resolvers (for example `single_page_selection`, `media_selection`). Plain types such as `text_line` and `text_editor` are handled by the `default` resolver. Sulu 2.6 lists the content types by alias. Optional `name_prefix` and `limit`. The data is read from the installed sources, so no kernel is booted. If nothing is found, the result carries a `note`.
-
-**`sulu-property-types`**: Lists the type names that can be used in `<property type="...">` of template XML. Each entry has its `sources` (admin core types, content types or resolvers, admin metadata mappers, selection field types, or only the project templates), the resolver or content type `class` when there is one, and `used_in_templates` with the number of properties in the project templates that use it. Call this before writing or changing a template. Optional `name_prefix` and `limit`.
-
-**`sulu-twig-list`**: Lists the Twig functions, filters and tests that the installed Sulu packages register, with the extension class and the PHP signature. Use it to find `sulu_*` helpers for templates. Optional `kind` (`function`, `filter` or `test`), `name_prefix` and `limit`.
-
-**`sulu-twig-verify`**: Checks one exact Twig function, filter or test name, for example `sulu_content_path`. Returns `exists`, the matches, and similar names when there is no match. Call this before using a `sulu_*` helper in a template, so no helper name is invented.
+- **Call `sulu-info` before advice or code that depends on the Sulu version.** Sulu 2.6 and 3.x differ in storage and APIs.
+- **Call `sulu-webspaces` before using a webspace key or locale.** Both are defined per project.
+- **Call `sulu-templates` before writing or changing template XML, Twig or content.** Template keys, property names and types are defined per project.
+- **Call `sulu-property-types` before using a property type that no template of the project uses.** The installed Sulu packages decide which types exist.
+- **Call `sulu-twig-verify` before using a `sulu_*` Twig helper.** The installed Sulu version decides which helpers exist.
+- Reuse the block types the tool reports. Do not invent new ones.
+- `sulu-templates` lists only `config/templates/pages` and `config/templates/articles`. Snippets are not listed.
+- `sulu-property-types`, `sulu-content-types`, `sulu-twig-list` and `sulu-twig-verify` read the installed sources and do not boot the kernel. `sulu-twig-list` and `sulu-twig-verify` scan `sulu/*` packages only. Plain types such as `text_line` and `text_editor` are not listed by `sulu-content-types`. They go through the default resolver.
