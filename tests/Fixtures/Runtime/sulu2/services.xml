@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service id="sulu.content.type.text_line" class="Sulu\Component\Content\SimpleContentType">
+            <tag name="sulu.content.type" alias="text_line"/>
+        </service>
+        <service id="sulu.content.type.block" class="Sulu\Component\Content\Types\BlockContentType">
+            <tag name="sulu.content.type" alias="block"/>
+            <tag name="other.tag"/>
+        </service>
+    </services>
+</container>
