@@ -59,7 +59,7 @@ The extension ships [Agent Skills](https://agentskills.io/) in [skills](skills).
 
 - `sulu-dev`: entry point for Sulu work. Tells the agent to call `sulu-info`, `sulu-webspaces` and `sulu-templates`
   before it generates code.
-- `sulu-templates`: workflow to create or change a page or article template: look up, mirror, verify.
+- `authoring-sulu-templates`: workflow to create or change a page or article template: look up, mirror, verify.
 
 Run `vendor/bin/mate skills:list` to see their state.
 

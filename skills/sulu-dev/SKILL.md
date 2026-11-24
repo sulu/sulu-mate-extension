@@ -14,18 +14,19 @@ about the running installation. Call them first, then generate code that matches
 
 ## Discovery
 
-Run these from the project root. Add `--format=json` for output you want to parse.
+Run these from the project root. `<mate>` is the Mate command from the project's agent
+instructions, usually `vendor/bin/mate`. Add `--format=json` for output you want to parse.
 
 | Need | Command |
 |---|---|
-| Installed `sulu/*` versions | `vendor/bin/mate tools:call sulu-info` |
-| Webspaces, localizations, default templates, portals | `vendor/bin/mate tools:call sulu-webspaces` |
-| Page and article templates with properties and block types | `vendor/bin/mate tools:call sulu-templates` |
+| Installed `sulu/*` versions | `<mate> tools:call sulu-info` |
+| Webspaces, localizations, default templates, portals | `<mate> tools:call sulu-webspaces` |
+| Page and article templates with properties and block types | `<mate> tools:call sulu-templates` |
 
 Start with `sulu-info`. The major version (2.6 or 3.x) decides how much of your Sulu
 knowledge applies.
 
-If `vendor/bin/mate` is missing, the extension is not installed. Say so and stop. Do not
+If the Mate command is missing, the extension is not installed. Say so and stop. Do not
 guess project facts from memory.
 
 ## What the tools tell you
@@ -33,13 +34,16 @@ guess project facts from memory.
 - `sulu-webspaces`: webspace keys, localizations and `default_templates` (the `page` and
   `home` template keys). A new page template must fit a webspace that exists.
 - `sulu-templates`: for every template the key, type (`page` or `article`), view, controller,
-  localized titles, the Twig files that exist for the view, and the properties.
-  Properties carry `name`, `type`, `mandatory`, `multilingual`. Block properties list their
-  block types with sub-properties. Global block refs are already resolved.
+  localized titles, the Twig files found in the project's `templates/` directory, and the
+  properties. Properties carry `name`, `type`, `mandatory`, `multilingual`. Block properties
+  list their block types with sub-properties.
 
 What the tools do not tell you:
 
 - Property tags (for example `sulu.rlp`) and `params`. Read the template XML for those.
+- Global blocks in full. The tool resolves a `<type ref="..."/>` from the direct `<property>`
+  children of the block file only. A section or nested block in it is dropped, and a ref
+  whose file is missing is skipped without a sign. Read the block XML for those.
 - Snippet templates, form XML and custom template directories. The tool only reads
   `config/templates/pages` and `config/templates/articles`.
 - Whether the Twig view renders what you expect. Read it.
@@ -47,13 +51,18 @@ What the tools do not tell you:
 ## Hard rules
 
 - Never invent a property type. Use types that appear in `sulu-templates` output or in the
-  project's own XML. Which types exist depends on the installed Sulu packages.
-- Never invent a template key. Take keys from `sulu-templates` and `default_templates`.
+  project's own XML. A standard project uses few of them. If you need another one, for
+  example for media or a selection, look it up in the Sulu documentation of the installed
+  major version and check that it is registered. If you cannot confirm it, ask.
+- Never invent the key of an existing template. Take keys of existing templates from
+  `sulu-templates` and `default_templates`. A new template gets a new key that is valid and
+  not used yet.
 - A template key matches `[a-z0-9_-]+` and has at most 64 characters.
 - Mirror an existing template of the same type before you write a new one.
   The existing XML is the best source for the controller, `cacheLifetime` and tags of
   this project and version.
-- Keep titles in the localizations the webspace uses. Take them from `sulu-webspaces`.
+- Give titles the same `lang` set as the template you mirror. Admin titles follow the UI
+  locale of the admin user, not the webspace.
 - Do not apply 2.6 advice to a 3.x project or the reverse. 3.x stores content in the
   database, 2.6 stores it in PHPCR. The template XML format is the same, but check
   `sulu-info` before you rely on version-specific classes, commands or migrations.
@@ -73,5 +82,5 @@ it does not exist.
 
 ## Related skills
 
-- The `sulu-templates` skill (installed as `mate-sulu-templates`): create or change a page or
-  article template. It shares its name with the tool, but it is a workflow, not a tool call.
+- `authoring-sulu-templates` (installed as `mate-authoring-sulu-templates`): create or
+  change a page or article template.
