@@ -6,7 +6,7 @@ This file provides guidance when working on the SuluMateExtension.
 
 ## Project Overview
 
-This package is the Sulu AI Mate extension (`sulu/sulu-mate-extension`). It provides Sulu-aware tools and resources for AI-assisted content management workflows.
+This package is the Sulu Mate extension (`sulu/sulu-mate-extension`). It provides Sulu-aware tools and resources for AI-assisted content management workflows.
 
 The extension provides the tools `sulu-info`, `sulu-webspaces`, `sulu-templates`, `sulu-twig-list` and `sulu-twig-verify`. The last two read the installed `sulu/*` sources and do not boot the host kernel. When adding capabilities, follow the Sulu file header convention and register them in `config/config.php`.
 
