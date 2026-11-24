@@ -12,14 +12,14 @@
 namespace Sulu\MateExtension\Capability;
 
 use Composer\InstalledVersions;
-use Mcp\Capability\Attribute\McpTool;
+use Symfony\AI\Mate\Attribute\MateTool;
 
 class SuluInfo
 {
     /**
      * @return array<string, string>
      */
-    #[McpTool('sulu-info', 'Get version information about all installed Sulu packages')]
+    #[MateTool(name: 'sulu-info', description: 'Get version information about all installed Sulu packages')]
     public function info(): array
     {
         $packages = [];

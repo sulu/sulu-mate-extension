@@ -11,7 +11,7 @@
 
 namespace Sulu\MateExtension\Capability;
 
-use Mcp\Capability\Attribute\McpTool;
+use Symfony\AI\Mate\Attribute\MateTool;
 
 class TemplateInfo
 {
@@ -56,7 +56,7 @@ class TemplateInfo
      *     }>
      * }>
      */
-    #[McpTool('sulu-templates', 'Get the page and article template definitions of the Sulu installation')]
+    #[MateTool(name: 'sulu-templates', description: 'Get the page and article template definitions of the Sulu installation')]
     public function templates(): array
     {
         $templates = [];

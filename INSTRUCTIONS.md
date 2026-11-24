@@ -1,6 +1,6 @@
 ## Sulu Mate Extension
 
-This extension provides Sulu-specific MCP tools for AI-assisted content management.
+This extension provides Sulu-specific tools for AI-assisted content management.
 
 ### Available Tools
 

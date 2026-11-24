@@ -11,12 +11,12 @@
 
 namespace Sulu\MateExtension\Capability;
 
-use Mcp\Capability\Attribute\McpTool;
 use Sulu\Component\Localization\Localization;
 use Sulu\Component\Webspace\Loader\XmlFileLoader10;
 use Sulu\Component\Webspace\Loader\XmlFileLoader11;
 use Sulu\Component\Webspace\Portal;
 use Sulu\Component\Webspace\Webspace;
+use Symfony\AI\Mate\Attribute\MateTool;
 use Symfony\Component\Config\FileLocator;
 
 class WebspaceInfo
@@ -39,7 +39,7 @@ class WebspaceInfo
      *     }>
      * }>
      */
-    #[McpTool('sulu-webspaces', 'Get the webspace configuration of the Sulu installation')]
+    #[MateTool(name: 'sulu-webspaces', description: 'Get the webspace configuration of the Sulu installation')]
     public function webspaces(): array
     {
         $webspacesDir = $this->projectDir.'/config/webspaces';

@@ -20,7 +20,7 @@
 <br/>
 
 The **SuluMateExtension** is an [AI Mate](https://symfony.com/doc/current/ai/components/mate.html) extension for the
-[Sulu](https://sulu.io/) content management system. It provides **Sulu-aware MCP tools and resources** for
+[Sulu](https://sulu.io/) content management system. It provides **Sulu-aware tools** for
 AI-assisted content management workflows.
 
 Have a look at the `require` section in the [composer.json](composer.json) to find an
@@ -49,7 +49,7 @@ want to refresh discovery state and regenerate agent instruction artifacts manua
 
 ## 🔧&nbsp; Available Tools
 
-See [INSTRUCTIONS.md](INSTRUCTIONS.md) for a full description of the available MCP tools.
+See [INSTRUCTIONS.md](INSTRUCTIONS.md) for a full description of the available tools.
 
 
 ## 💡&nbsp; Key Concepts
@@ -57,8 +57,8 @@ See [INSTRUCTIONS.md](INSTRUCTIONS.md) for a full description of the available M
 ### AI Mate Extension
 
 The SuluMateExtension integrates with the [Symfony AI Mate](https://symfony.com/doc/current/ai/components/mate.html)
-ecosystem. It uses the **Model Context Protocol (MCP)** to expose Sulu-specific tools and resources to AI assistants,
-enabling them to interact with the Sulu CMS in a structured and framework-aware way.
+ecosystem. Coding agents call its tools through the Mate CLI (`vendor/bin/mate tools:call`), which gives them
+Sulu-specific information to interact with the Sulu CMS in a structured and framework-aware way.
 
 ### Development
 
@@ -74,7 +74,8 @@ Useful Mate commands while developing:
 ```bash
 vendor/bin/mate debug:capabilities
 vendor/bin/mate debug:extensions
-vendor/bin/mate mcp:tools:list
+vendor/bin/mate tools:list
+vendor/bin/mate tools:call sulu-info
 ```
 
 

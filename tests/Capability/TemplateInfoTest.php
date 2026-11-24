@@ -57,7 +57,7 @@ class TemplateInfoTest extends TestCase
         $twigDir = $tmpDir.'/templates/pages';
         mkdir($pagesDir, 0777, true);
         mkdir($twigDir, 0777, true);
-        copy(\dirname(__DIR__).'/Fixtures/template_default.xml', $pagesDir.'/default.xml');
+        copy(__DIR__.'/../Fixtures/template_default.xml', $pagesDir.'/default.xml');
         file_put_contents($twigDir.'/default.html.twig', '{# html #}');
         file_put_contents($twigDir.'/default.json.twig', '{# json #}');
 
@@ -72,7 +72,13 @@ class TemplateInfoTest extends TestCase
             $this->assertSame('page', $template['type']);
             $this->assertSame('pages/default', $template['view']);
             $this->assertSame('Sulu\Bundle\WebsiteBundle\Controller\DefaultController::indexAction', $template['controller']);
-            $this->assertNull($template['controller_file']);
+            // Sulu 2.6 ships this controller, Sulu 3 does not.
+            if (class_exists('Sulu\\Bundle\\WebsiteBundle\\Controller\\DefaultController')) {
+                $this->assertIsString($template['controller_file']);
+                $this->assertStringEndsWith('DefaultController.php', $template['controller_file']);
+            } else {
+                $this->assertNull($template['controller_file']);
+            }
             $this->assertSame(['en' => 'Default', 'de' => 'Standard'], $template['titles']);
             $this->assertSame(['pages/default.html.twig', 'pages/default.json.twig'], $template['twig_templates']);
 
@@ -133,7 +139,7 @@ class TemplateInfoTest extends TestCase
         $tmpDir = sys_get_temp_dir().'/sulu-mate-test-'.uniqid();
         $articlesDir = $tmpDir.'/config/templates/articles';
         mkdir($articlesDir, 0777, true);
-        copy(\dirname(__DIR__).'/Fixtures/template_article.xml', $articlesDir.'/blog.xml');
+        copy(__DIR__.'/../Fixtures/template_article.xml', $articlesDir.'/blog.xml');
 
         try {
             $info = new TemplateInfo($tmpDir);
@@ -163,8 +169,8 @@ class TemplateInfoTest extends TestCase
         $articlesDir = $tmpDir.'/config/templates/articles';
         mkdir($pagesDir, 0777, true);
         mkdir($articlesDir, 0777, true);
-        copy(\dirname(__DIR__).'/Fixtures/template_default.xml', $pagesDir.'/default.xml');
-        copy(\dirname(__DIR__).'/Fixtures/template_article.xml', $articlesDir.'/blog.xml');
+        copy(__DIR__.'/../Fixtures/template_default.xml', $pagesDir.'/default.xml');
+        copy(__DIR__.'/../Fixtures/template_article.xml', $articlesDir.'/blog.xml');
 
         try {
             $info = new TemplateInfo($tmpDir);
@@ -191,7 +197,7 @@ class TemplateInfoTest extends TestCase
         $tmpDir = sys_get_temp_dir().'/sulu-mate-test-'.uniqid();
         $pagesDir = $tmpDir.'/config/templates/pages';
         mkdir($pagesDir, 0777, true);
-        copy(\dirname(__DIR__).'/Fixtures/template_complex.xml', $pagesDir.'/complex.xml');
+        copy(__DIR__.'/../Fixtures/template_complex.xml', $pagesDir.'/complex.xml');
 
         try {
             $info = new TemplateInfo($tmpDir);
@@ -247,8 +253,8 @@ class TemplateInfoTest extends TestCase
         $blocksDir = $tmpDir.'/config/templates/blocks';
         mkdir($pagesDir, 0777, true);
         mkdir($blocksDir, 0777, true);
-        copy(\dirname(__DIR__).'/Fixtures/template_with_ref.xml', $pagesDir.'/with-ref.xml');
-        copy(\dirname(__DIR__).'/Fixtures/text_block.xml', $blocksDir.'/text_block.xml');
+        copy(__DIR__.'/../Fixtures/template_with_ref.xml', $pagesDir.'/with-ref.xml');
+        copy(__DIR__.'/../Fixtures/text_block.xml', $blocksDir.'/text_block.xml');
 
         try {
             $info = new TemplateInfo($tmpDir);
@@ -287,8 +293,8 @@ class TemplateInfoTest extends TestCase
         $tmpDir = sys_get_temp_dir().'/sulu-mate-test-'.uniqid();
         $pagesDir = $tmpDir.'/config/templates/pages';
         mkdir($pagesDir, 0777, true);
-        copy(\dirname(__DIR__).'/Fixtures/template_xinclude.xml', $pagesDir.'/xinclude.xml');
-        copy(\dirname(__DIR__).'/Fixtures/template_xinclude_properties.xml', $pagesDir.'/template_xinclude_properties.xml');
+        copy(__DIR__.'/../Fixtures/template_xinclude.xml', $pagesDir.'/xinclude.xml');
+        copy(__DIR__.'/../Fixtures/template_xinclude_properties.xml', $pagesDir.'/template_xinclude_properties.xml');
 
         try {
             $info = new TemplateInfo($tmpDir);

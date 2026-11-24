@@ -4,15 +4,15 @@ This file provides guidance when working on the SuluMateExtension.
 
 ## Project Overview
 
-This package is the Sulu AI Mate extension (`sulu/sulu-mate-extension`). It provides Sulu-aware MCP tools and resources for AI-assisted content management workflows.
+This package is the Sulu AI Mate extension (`sulu/sulu-mate-extension`). It provides Sulu-aware tools and resources for AI-assisted content management workflows.
 
-The extension currently has no capabilities yet. When adding capabilities, follow the Sulu file header convention and register them in `config/config.php`.
+The extension provides the tools `sulu-info`, `sulu-webspaces` and `sulu-templates`. When adding capabilities, follow the Sulu file header convention and register them in `config/config.php`.
 
 ## Current Mate Baseline
 
 The extension is aligned with:
 
-- released `symfony/ai-mate` `0.6.x`
+- released `symfony/ai-mate` `0.13` to `0.15` (native `#[MateTool]` attributes, no MCP server)
 - current `symfony/ai` `main` branch conventions where they are already established
 
 Current workflow assumptions:
@@ -20,7 +20,7 @@ Current workflow assumptions:
 - projects are initialized with `vendor/bin/mate init`
 - Composer install and update handle extension discovery
 - `vendor/bin/mate discover` refreshes discovery state and regenerates `mate/AGENT_INSTRUCTIONS.md`
-- debugging commands include `mate debug:capabilities`, `mate debug:extensions`, and `mate mcp:tools:*`
+- debugging commands include `mate debug:capabilities`, `mate debug:extensions`, and `mate tools:list`, `mate tools:inspect`, `mate tools:call`
 
 ## Common Commands
 
@@ -37,7 +37,7 @@ vendor/bin/mate debug:extensions
 
 - `src/Capability/` is where tools and resources go
 - `config/config.php` registers services
-- `INSTRUCTIONS.md` provides agent guidance for MCP capabilities
+- `INSTRUCTIONS.md` provides agent guidance for the capabilities
 
 ## Service Registration
 

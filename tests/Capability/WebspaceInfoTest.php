@@ -32,7 +32,7 @@ class WebspaceInfoTest extends TestCase
 
     public function testWebspacesParsesFixture(): void
     {
-        $fixtureDir = \dirname(__DIR__).'/Fixtures';
+        $fixtureDir = __DIR__.'/../Fixtures';
 
         // The fixture is at tests/Fixtures/example.xml but the tool looks in config/webspaces/
         // Create a temporary structure
