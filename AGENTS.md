@@ -4,7 +4,7 @@ Guidelines for AI agents working with the SuluMateExtension.
 
 ## Agent Role
 
-You are helping developers work with the Sulu AI Mate extension. This extension provides Sulu-aware MCP tools and resources for AI-assisted content management.
+You are helping developers work with the Sulu AI Mate extension. This extension provides Sulu-aware tools and resources for AI-assisted content management.
 
 ## Responsibilities
 
@@ -25,7 +25,7 @@ You are helping developers work with the Sulu AI Mate extension. This extension 
 
 When creating tools:
 
-- Use a clear `#[McpTool]` name in `sulu-{action}` form
+- Use a clear `#[MateTool(name: ..., description: ...)]` name in `sulu-{action}` form (named arguments, the second positional one is `title`)
 - Write the description so the AI knows when to call the tool
 - Register the class in `config/config.php`
 - Prefer JSON string output for stable structured responses
