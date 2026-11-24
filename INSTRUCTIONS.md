@@ -1,11 +1,19 @@
 ## Sulu Mate Extension
 
-This extension provides Sulu-specific tools for AI-assisted content management.
+Read-only tools, no parameters.
 
-### Available Tools
+### Tool index
 
-**`sulu-info`** — Returns version information for all installed `sulu/*` packages. Use this to understand which Sulu components are available in the project and at what versions.
+| Tool | Use when |
+|---|---|
+| `sulu-info` | You need the Sulu version, to tell Sulu 2.6 from 3.x. |
+| `sulu-webspaces` | You need webspace keys, locales or default templates. |
+| `sulu-templates` | You write, change or fill a page or article template. |
 
-**`sulu-webspaces`** — Returns the webspace configuration of the Sulu installation. Each webspace includes its key, name, localizations, default templates, and portal definitions. Use this to understand the content structure, available languages, and URL routing of the project.
+### Hard rules
 
-**`sulu-templates`** — Returns the page and article template definitions of the Sulu installation. Each template includes its key, type (page or article), view, localized titles, and a structured list of properties with their types. Block properties include their available block types and sub-properties. Use this to understand the content structure expected by each template when creating or editing pages and articles.
+- **Call `sulu-info` before advice or code that depends on the Sulu version.** Sulu 2.6 and 3.x differ in storage and APIs.
+- **Call `sulu-webspaces` before using a webspace key or locale.** Both are defined per project.
+- **Call `sulu-templates` before writing or changing template XML, Twig or content.** Template keys, property names and types are defined per project.
+- Reuse the property types and block types the tool reports. Do not invent new ones.
+- `sulu-templates` lists only `config/templates/pages` and `config/templates/articles`. Snippets are not listed.
