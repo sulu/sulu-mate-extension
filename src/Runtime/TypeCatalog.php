@@ -24,7 +24,8 @@ class TypeCatalog
     public const TAG_CONTENT_TYPE = 'sulu.content.type';
     public const TAG_METADATA_MAPPER = 'sulu_admin.property_metadata_mapper';
 
-    private const RESOLVER_INTERFACE = \Sulu\Content\Application\PropertyResolver\Resolver\PropertyResolverInterface::class;
+    // Only Sulu 3 ships this interface. A `::class` or a plain class name string fails Rector or PHPStan on one Sulu line.
+    private const RESOLVER_NAMESPACE = 'Sulu\\Content\\Application\\PropertyResolver\\Resolver';
 
     /**
      * Field types that the Sulu admin ships for forms and templates.
@@ -236,7 +237,7 @@ class TypeCatalog
             }
 
             $className = $namespace.$class[1];
-            if (!class_exists($className) || !is_subclass_of($className, self::RESOLVER_INTERFACE)) {
+            if (!class_exists($className) || !is_subclass_of($className, self::RESOLVER_NAMESPACE.'\\PropertyResolverInterface')) {
                 continue;
             }
 

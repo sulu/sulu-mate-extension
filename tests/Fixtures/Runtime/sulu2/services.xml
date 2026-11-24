@@ -4,7 +4,7 @@
         <service id="sulu.content.type.text_line" class="Sulu\Component\Content\SimpleContentType">
             <tag name="sulu.content.type" alias="text_line"/>
         </service>
-        <service id="sulu.content.type.block" class="Sulu\Component\Content\Types\BlockContentType">
+        <service id="sulu.content.type.block" class="Sulu\MateExtension\Tests\Fixtures\Runtime\Twig\FixtureResolver">
             <tag name="sulu.content.type" alias="block"/>
             <tag name="other.tag"/>
         </service>

@@ -37,7 +37,7 @@ class TypeToolsTest extends TestCase
         $this->assertSame(\Sulu\MateExtension\Tests\Fixtures\Runtime\Twig\FixtureResolver::class, $byKey['property_resolver:fixture_type']['class']);
         $this->assertSame('fixture.explicit', $byKey['property_resolver:explicit_type']['service_id']);
         $this->assertSame('sulu.content.type.text_line', $byKey['content_type:text_line']['service_id']);
-        $this->assertSame('Sulu\Component\Content\Types\BlockContentType', $byKey['content_type:block']['class']);
+        $this->assertSame(\Sulu\MateExtension\Tests\Fixtures\Runtime\Twig\FixtureResolver::class, $byKey['content_type:block']['class']);
         $this->assertArrayNotHasKey('property_resolver:fixture_mapped', $byKey);
         $this->assertSame(4, $result['total']);
     }
