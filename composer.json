@@ -1,6 +1,6 @@
 {
     "name": "sulu/sulu-mate-extension",
-    "description": "Sulu AI Mate extension for the Sulu CMS",
+    "description": "Sulu Mate extension for the Sulu CMS",
     "type": "symfony-ai-mate",
     "license": "MIT",
     "keywords": ["sulu", "cms", "ai", "mate", "mcp", "ai-assistant"],

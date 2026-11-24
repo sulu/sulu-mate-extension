@@ -1,13 +1,17 @@
 CHANGELOG
 =========
 
-0.4.0
+0.5.0
 -----
 
  * Add `sulu-content-types` tool for the registered content types (Sulu 3 property resolvers, Sulu 2.6 content types)
  * Add `sulu-property-types` tool for the type names usable in template XML properties
  * Add `sulu-twig-list` and `sulu-twig-verify` tools for the Twig functions, filters and tests of the installed Sulu packages
  * Read these tools from the installed `sulu/*` sources, without booting the host kernel
+
+0.4.0
+-----
+
  * Add the Agent Skills `sulu-dev` and `authoring-sulu-templates` in `skills/` and declare them in `extra.ai-mate.skills`
  * Require `symfony/ai-mate` `^0.13 || ^0.14 || ^0.15 || ^1.0.0-BETA1` and drop `^0.11` and `^0.12`
  * Replace the `mcp/sdk` `#[McpTool]` attribute with the native `#[MateTool]` attribute, because Mate no longer runs an MCP server

@@ -32,7 +32,7 @@ What actually happened.
 - Symfony version: [e.g. 7.2]
 - Sulu version: [e.g. 2.6.0]
 - Extension version: [e.g. 0.1.0]
-- Symfony AI Mate version: [e.g. 0.6.0]
+- Symfony Mate version: [e.g. 0.15.0]
 
 ## Additional Context
 

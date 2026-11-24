@@ -1,4 +1,4 @@
-<h1 align="center">SuluMateExtension</h1>
+<h1 align="center">Sulu Mate Extension</h1>
 
 <p align="center">
     <a href="https://sulu.io/" target="_blank">
@@ -19,12 +19,14 @@
 </p>
 <br/>
 
-The **SuluMateExtension** is an [AI Mate](https://symfony.com/doc/current/ai/components/mate.html) extension for the
-[Sulu](https://sulu.io/) content management system. It provides **Sulu-aware tools** for
-AI-assisted content management workflows.
+The **Sulu Mate Extension** is a [Symfony Mate](https://symfony.com/doc/current/ai/components/mate.html) extension for
+the [Sulu](https://sulu.io/) content management system. It gives coding agents **Sulu-aware tools** that read the real
+installation: Sulu versions, webspaces and templates. Agents call them through the Mate CLI. No MCP server is needed.
+
+It is a development tool. Install it as a `require-dev` dependency.
 
 Have a look at the `require` section in the [composer.json](composer.json) to find an
-**up-to-date list of the requirements** of the extension.
+**up-to-date list of the requirements** of the extension. It needs Symfony Mate 0.13 or newer.
 
 
 ## 🚀&nbsp; Installation and Documentation
@@ -36,7 +38,7 @@ project:
 composer require --dev sulu/sulu-mate-extension
 ```
 
-Afterwards, initialize the Mate environment and discover the extension:
+Afterwards, initialize Mate and discover the extension:
 
 ```bash
 vendor/bin/mate init
@@ -49,7 +51,13 @@ want to refresh discovery state and regenerate agent instruction artifacts manua
 
 ## 🔧&nbsp; Available Tools
 
-See [INSTRUCTIONS.md](INSTRUCTIONS.md) for a full description of the available tools.
+- `sulu-info`: installed `sulu/*` package versions
+- `sulu-webspaces`: webspaces with localizations, default templates and portals
+- `sulu-templates`: page and article templates with properties and block types
+- `sulu-twig-list` and `sulu-twig-verify`: the `sulu_*` Twig functions, filters and tests, and a check for one exact name
+
+Agents call a tool with `vendor/bin/mate tools:call <tool>`. See [INSTRUCTIONS.md](INSTRUCTIONS.md) for when to call
+which tool.
 
 
 ## 🧠&nbsp; Agent Skills
@@ -66,11 +74,11 @@ Run `vendor/bin/mate skills:list` to see their state.
 
 ## 💡&nbsp; Key Concepts
 
-### AI Mate Extension
+### Mate Extension
 
-The SuluMateExtension integrates with the [Symfony AI Mate](https://symfony.com/doc/current/ai/components/mate.html)
-ecosystem. Coding agents call its tools through the Mate CLI (`vendor/bin/mate tools:call`), which gives them
-Sulu-specific information to interact with the Sulu CMS in a structured and framework-aware way.
+The extension plugs into [Symfony Mate](https://symfony.com/doc/current/ai/components/mate.html). Mate finds the tools
+and skills of installed extensions and writes them into the agent instructions of your project. Coding agents then run
+the tools through the Mate CLI (`vendor/bin/mate tools:call`) and get Sulu-specific facts instead of guessing them.
 
 ### Development
 
@@ -103,4 +111,4 @@ on the [sulu/sulu-mate-extension](https://github.com/sulu/sulu-mate-extension) r
 
 ## 📘&nbsp; License
 
-The Sulu content management system is released under the under terms of the [MIT License](LICENSE).
+The Sulu content management system is released under the terms of the [MIT License](LICENSE).

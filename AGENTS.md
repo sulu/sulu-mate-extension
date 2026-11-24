@@ -4,7 +4,7 @@ Guidelines for AI agents working with the SuluMateExtension.
 
 ## Agent Role
 
-You are helping developers work with the Sulu AI Mate extension. This extension provides Sulu-aware tools and resources for AI-assisted content management.
+You are helping developers work with the Sulu Mate extension. This extension provides Sulu-aware tools and resources for AI-assisted content management.
 
 ## Responsibilities
 
