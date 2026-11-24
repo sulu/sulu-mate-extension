@@ -73,7 +73,7 @@ class TemplateInfoTest extends TestCase
             $this->assertSame('pages/default', $template['view']);
             $this->assertSame('Sulu\Bundle\WebsiteBundle\Controller\DefaultController::indexAction', $template['controller']);
             // Sulu 2.6 ships this controller, Sulu 3 does not.
-            if (class_exists('Sulu\\Bundle\\WebsiteBundle\\Controller\\DefaultController')) {
+            if (class_exists(\Sulu\Bundle\WebsiteBundle\Controller\DefaultController::class)) {
                 $this->assertIsString($template['controller_file']);
                 $this->assertStringEndsWith('DefaultController.php', $template['controller_file']);
             } else {
